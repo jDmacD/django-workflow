@@ -16,10 +16,13 @@
         "uv run manage.py runserver"
       ],
       "docker-build": [
-        "docker build -t django-workflow ."
+        "docker build -t ghcr.io/jdmacd/django-workflow/dev:latest ."
+      ],
+      "docker-push": [
+        "docker push ghcr.io/jdmacd/django-workflow/dev:latest"
       ],
       "docker-up": [
-        docker run -d -p 8000:8000 django-workflow
+        "docker run -d -p 8000:8000 django-workflow"
       ]
     }
   }

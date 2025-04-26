@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+  "packages": [
+    "uv@latest",
+    "okteto@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "uv sync"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ],
+      "app": [
+        "uv run manage.py runserver"
+      ],
+      "docker-build": [
+        "docker build -t django-workflow ."
+      ],
+      "docker-up": [
+        docker run -d -p 8000:8000 django-workflow
+      ]
+    }
+  }
+}

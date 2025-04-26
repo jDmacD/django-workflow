@@ -19,6 +19,12 @@ spec:
       - name: djangoworkflow
         image: ghcr.io/jdmacd/django-workflow/dev:latest
         imagePullPolicy: Always
+        command:
+        - uv
+        - run
+        - manage.py
+        - runserver
+        - 0.0.0.0:8000
         ports:
         - containerPort: 8000
         # env:

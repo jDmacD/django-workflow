@@ -1,0 +1,9 @@
+dev:
+  djangoworkflow:
+    command: uv run manage.py runserver 0.0.0.0:8000
+    sync:
+      - .:/app
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/uv

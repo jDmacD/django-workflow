@@ -2,7 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
   "packages": [
     "uv@latest",
-    "okteto@latest"
+    "okteto@latest",
+    "argocd@latest"
   ],
   "shell": {
     "init_hook": [
@@ -27,7 +28,14 @@
       ],
       "docker-up": [
         "docker run -d -p 8000:8000 django-workflow"
-      ]
+      ],
+      "argocd-create": [
+        "argocd app create django-workflow --app-namespace argocd --repo https://github.com/jDmacD/django-workflow.git --path kustomize --dest-namespace django-workflow --dest-server https://kubernetes.default.svc",
+        "argocd app sync django-workflow"
+      ],
+      "argocd-delete": ["argocd app delete django-workflow"],
+      "okteto-up": ["okteto up -n djangoworkflow"],
+      "okteto-down": ["okteto down -n djangoworkflow"]
     }
   }
 }

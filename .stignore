@@ -1,0 +1,11 @@
+.git
+.devbox
+.venv
+.ruff
+kustomize
+.gitignore
+db.sqlite3
+devbox.*
+Dockerfile
+okteto.yml
+README.md

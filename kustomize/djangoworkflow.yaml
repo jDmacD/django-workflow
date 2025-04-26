@@ -27,9 +27,11 @@ spec:
         - 0.0.0.0:8000
         ports:
         - containerPort: 8000
-        # env:
-        # - name: DJANGO_SETTINGS_MODULE
-        #   value: "djangoworkflow.settings"
+        env:
+        - name: DJANGO_SETTINGS_MODULE
+          value: "djangoworkflow.settings"
+        - name: ALLOWED_HOSTS
+          value: "djangoworkflow.jtec.xyz,localhost,127.0.0.1"
         # readinessProbe:
         #   httpGet:
         #     path: /

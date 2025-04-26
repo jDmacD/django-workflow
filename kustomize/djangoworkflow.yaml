@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: djangoworkflow
-        image: djangoworkflow:latest  # You'll need to replace this with your actual image
+        image: ghcr.io/jdmacd/django-workflow/dev:latest
         ports:
         - containerPort: 8000
         env:

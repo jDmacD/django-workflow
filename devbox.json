@@ -3,10 +3,13 @@
   "packages": [
     "uv@latest",
     "okteto@latest",
-    "argocd@latest"
+    "argocd@latest",
+    "path:.#argocdCreate"
   ],
   "shell": {
     "init_hook": [
+      "echo 'Installing python dependencies'",
+      "uv python install 3.13",
       "uv sync"
     ],
     "scripts": {
@@ -20,8 +23,8 @@
         "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes",
         "docker buildx create --name builder --driver docker-container --use"
       ],
-      "docker-build": [
-        "docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t ghcr.io/jdmacd/django-workflow/dev:latest ."
+      "docker-build-dev": [
+        "docker buildx build --file dev.Dockerfile --push --platform linux/arm64/v8,linux/amd64 -t ghcr.io/jdmacd/django-workflow/dev:latest ."
       ],
       "docker-push": [
         "docker push ghcr.io/jdmacd/django-workflow/dev:latest"
@@ -30,8 +33,7 @@
         "docker run -d -p 8000:8000 django-workflow"
       ],
       "argocd-create": [
-        "argocd app create django-workflow --app-namespace argocd --repo https://github.com/jDmacD/django-workflow.git --path kustomize --dest-namespace django-workflow --dest-server https://kubernetes.default.svc",
-        "argocd app sync django-workflow"
+        "argocd-create"
       ],
       "argocd-delete": ["argocd app delete django-workflow"],
       "okteto-up": ["okteto up -n djangoworkflow"],

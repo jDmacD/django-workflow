@@ -5,4 +5,3 @@
 kustomize
 .gitignore
 db.sqlite3
-devbox.*
